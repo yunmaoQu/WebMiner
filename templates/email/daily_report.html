@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .repository {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+        }
+        .stats {
+            color: #586069;
+            font-size: 14px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2ea44f;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Daily GitHub Trending Report</h1>
+            <p>{{ report_date }}</p>
+        </div>
+
+        <div class="summary">
+            <h2>Today's Highlights</h2>
+            <ul>
+                <li>{{ total_repos }} repositories analyzed</li>
+                <li>Most active language: {{ top_language }}</li>
+                <li>Average activity score: {{ avg_activity_score }}</li>
+            </ul>
+        </div>
+
+        <div class="trending">
+            <h2>Top Trending Repositories</h2>
+            {% for repo in trending_repos %}
+            <div class="repository">
+                <h3><a href="{{ repo.url }}">{{ repo.name }}</a></h3>
+                <p>{{ repo.description }}</p>
+                <div class="stats">
+                    <span>⭐ {{ repo.stars }}</span>
+                    <span>Today: +{{ repo.today_stars }}</span>
+                    <span>Language: {{ repo.language }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="{{ full_report_url }}" class="button">View Full Report</a>
+        </div>
+    </div>
+</body>
+</html>

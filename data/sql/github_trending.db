@@ -1,0 +1,34 @@
+-- repositories 表
+CREATE TABLE IF NOT EXISTS repositories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    url TEXT NOT NULL,
+    description TEXT,
+    language TEXT,
+    stars INTEGER,
+    forks INTEGER,
+    open_issues INTEGER,
+    watchers INTEGER,
+    contributors_count INTEGER,
+    recent_commits INTEGER,
+    activity_score REAL,
+    created_at TEXT,
+    updated_at TEXT,
+    crawled_at TEXT,
+    UNIQUE(name, crawled_at)
+);
+
+-- trending_history 表
+CREATE TABLE IF NOT EXISTS trending_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    repository_name TEXT NOT NULL,
+    activity_score REAL,
+    date TEXT NOT NULL,
+    UNIQUE(repository_name, date)
+);
+
+-- 索引
+CREATE INDEX IF NOT EXISTS idx_repo_name ON repositories(name);
+CREATE INDEX IF NOT EXISTS idx_activity_score ON repositories(activity_score);
+CREATE INDEX IF NOT EXISTS idx_crawled_at ON repositories(crawled_at);
+CREATE INDEX IF NOT EXISTS idx_trending_history_date ON trending_history(date);

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* 使用与daily_report.html相同的基本样式 */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .metric {
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        .trend-positive { color: #2ea44f; }
+        .trend-negative { color: #cb2431; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Weekly GitHub Trending Report</h1>
+            <p>{{ start_date }} - {{ end_date }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Weekly Summary</h2>
+            <div class="metrics-grid">
+                <div class="metric">
+                    <h3>Total Repositories</h3>
+                    <p>{{ total_repos }}</p>
+                    <span class="{{ repo_trend_class }}">{{ repo_change }}</span>
+                </div>
+                <div class="metric">
+                    <h3>Total Stars</h3>
+                    <p>{{ total_stars }}</p>
+                    <span class="{{ star_trend_class }}">{{ star_change }}</span>
+                </div>
+                <div class="metric">
+                    <h3>Active Languages</h3>
+                    <p>{{ active_languages }}</p>
+                </div>
+                <div class="metric">
+                    <h3>Average Activity</h3>
+                    <p>{{ avg_activity }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Top Performers</h2>
+            <table>
+                <tr>
+                    <th>Repository</th>
+                    <th>Stars</th>
+                    <th>Growth</th>
+                </tr>
+                {% for repo in top_performers %}
+                <tr>
+                    <td>
+                        <a href="{{ repo.url }}">{{ repo.name }}</a>
+                        <div style="font-size: 12px; color: #586069;">
+                            {{ repo.language }}
+                        </div>
+                    </td>
+                    <td>{{ repo.stars }}</td>
+                    <td class="trend-positive">+{{ repo.growth }}%</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Language Trends</h2>
+            <table>
+                <tr>
+                    <th>Language</th>
+                    <th>Repos</th>
+                    <th>Trend</th>
+                </tr>
+                {% for lang in language_trends %}
+                <tr>
+                    <td>{{ lang.name }}</td>
+                    <td>{{ lang.repos }}</td>
+                    <td class="{{ lang.trend_class }}">
+                        {{ lang.trend }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Key Insights</h2>
+            <ul>
+                {% for insight in insights %}
+                <li>{{ insight }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="{{ full_report_url }}" 
+               style="display: inline-block; padding: 10px 20px; 
+                      background-color: #2ea44f; color: white; 
+                      text-decoration: none; border-radius: 6px;">
+                View Detailed Report
+            </a>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center; font-size: 12px; color: #586069;">
+            <p>You're receiving this email because you subscribed to GitHub Trending Tracker updates.</p>
+            <p>
+                <a href="{{ unsubscribe_url }}">Unsubscribe</a> | 
+                <a href="{{ preferences_url }}">Update preferences</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
