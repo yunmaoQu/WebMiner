@@ -1,21 +1,29 @@
+# 🚀 GitHub Trending Tracker
 
+<div align="center">
 
-# GitHub Trending Tracker
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/yunmaoQu/WebMiner?style=social)](https://github.com/yunmaoQu/WebMiner)
 
-A Python tool to track GitHub trending repositories with community activity analysis. This tool automatically collects data from GitHub trending pages, analyzes repository activity, and sends daily reports via email.
+*A powerful tool for automatically tracking GitHub trending repositories and analyzing community activity*
 
-## Features
+[Features](#✨-features) • [Installation](#📦-installation) • [Configuration](#⚙️-configuration) • [Usage](#🔨-usage) • [Development](#💻-development) • [Contributing](#🤝-contributing)
 
-- Track GitHub trending repositories across multiple programming languages
-- Analyze repository community activity (issues, commits, contributors)
-- Store historical data in SQLite database
-- Send daily email reports with trending analysis
-- Support for GitHub Actions automation
-- Extensive logging and error handling
+</div>
 
-## Installation
+## ✨ Features
 
-### From PyPI
+- 🔍 Track GitHub trending repositories across multiple programming languages
+- 📊 Deep analysis of repository community activity (issues, commits, contributors)
+- 💾 Historical data storage using SQLite database
+- 📧 Automated daily trend analysis reports
+- 🔄 GitHub Actions automation support
+- 📝 Comprehensive logging and error handling
+
+## 📦 Installation
+
+### Via PyPI
 
 ```bash
 pip install github-trending-tracker
@@ -35,14 +43,14 @@ pip install -e .
 pip install -e ".[dev]"
 ```
 
-## Configuration
+## ⚙️ Configuration
 
-1. Copy `.env.example` to `.env`:
+1. Copy configuration template:
 ```bash
 cp .env.example .env
 ```
 
-2. Edit `.env` with your settings:
+2. Edit `.env` file:
 ```ini
 GITHUB_TOKEN=your_github_token
 SMTP_SERVER=smtp.gmail.com
@@ -52,18 +60,18 @@ SENDER_PASSWORD=your-app-password
 RECIPIENT_EMAILS=recipient1@example.com,recipient2@example.com
 ```
 
-## Usage
+## 🔨 Usage
 
-### Command Line
+### Command Line Interface
 
 ```bash
-# Run the tracker
+# Run tracker
 github-trending
 
-# With specific languages
+# Specify programming languages
 github-trending --languages python,java,javascript
 
-# With different time period
+# Set time period
 github-trending --period weekly
 ```
 
@@ -87,7 +95,7 @@ db_manager.save_repositories(repos)
 email_notifier.send_trending_report(repos)
 ```
 
-## Development
+## 💻 Development
 
 ### Setup Development Environment
 
@@ -105,7 +113,7 @@ pre-commit install
 # Run all tests
 pytest
 
-# Run with coverage report
+# Generate coverage report
 pytest --cov=src tests/
 
 # Run specific test file
@@ -115,10 +123,10 @@ pytest tests/test_crawler.py
 ### Code Style
 
 This project uses:
-- Black for code formatting
-- Flake8 for style guide enforcement
-- MyPy for type checking
-- isort for import sorting
+- 🎨 Black for code formatting
+- 🔍 Flake8 for style enforcement
+- ✅ MyPy for type checking
+- 📋 isort for import sorting
 
 ```bash
 # Format code
@@ -130,17 +138,17 @@ flake8 src tests
 # Sort imports
 isort src tests
 
-# Type checking
+# Type check
 mypy src
 ```
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
-## Contributing
+## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Feel free to submit a Pull Request.
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -148,9 +156,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## Acknowledgments
+## ⭐ Give us a star if you like this project!
 
-- GitHub Trending page for providing the data
-- All contributors who have helped with the project
+---
 
-
+<div align="center">
+Made with ❤️ by Contributors
+</div>
